@@ -3,6 +3,8 @@
 
 .vscode/*
 
+.env
+
 ### NextJS template
 # dependencies
 /node_modules
