@@ -1,0 +1,27 @@
+22.18
+
+
+  .:
+    dependencies:
+      next:
+        specifier: 15.4.6
+        version: 15.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react:
+        specifier: 19.1.0
+        version: 19.1.0
+      react-dom:
+        specifier: 19.1.0
+        version: 19.1.0(react@19.1.0)
+    devDependencies:
+      '@types/node':
+        specifier: ^20
+        version: 20.19.10
+      '@types/react':
+        specifier: ^19
+        version: 19.1.10
+      '@types/react-dom':
+        specifier: ^19
+        version: 19.1.7(@types/react@19.1.10)
+      typescript:
+        specifier: ^5
+        version: 5.9.2
