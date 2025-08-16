@@ -8,6 +8,8 @@ import {
 	parseJWT,
 } from '@oslojs/jwt'
 
+export const JWT_COOKIE_NAME = 'afta_auth_session' as const
+
 type JSONPrimitive = string | number | boolean | null | undefined
 
 type JSONValue = JSONPrimitive | JSONValue[] | {
