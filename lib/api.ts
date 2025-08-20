@@ -1,5 +1,5 @@
 import type { JwtData } from '@/lib/auth'
-import { extractJwt, verifyJwt } from '@/lib/auth'
+import { extractJwtFromHeaders, verifyJwt } from '@/lib/auth'
 import { NextResponse } from 'next/server'
 
 export type VerifyJwtApiResult = {
@@ -13,7 +13,7 @@ export type VerifyJwtApiResult = {
 }
 
 export async function verifyJwtApi(request: Request): Promise<VerifyJwtApiResult> {
-	const jwt = extractJwt(request)
+	const jwt = extractJwtFromHeaders(request)
 	if (!jwt)
 		return { ok: false, return: NextResponse.json(null, { status: 401 }) }
 

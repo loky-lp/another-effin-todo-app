@@ -8,6 +8,8 @@ import {
 	parseJWT,
 } from '@oslojs/jwt'
 
+export const JWT_COOKIE_NAME = 'afta_auth_token' as const
+
 type JSONPrimitive = string | number | boolean | null | undefined
 
 type JSONValue = JSONPrimitive | JSONValue[] | {
@@ -38,7 +40,7 @@ export async function createJwt(payload: JwtData): Promise<string> {
 	return encodeJWT(headerJSON, payloadJSON, new Uint8Array(signatureBuffer))
 }
 
-export function extractJwt(request: Request): string | undefined {
+export function extractJwtFromHeaders(request: Request): string | undefined {
 	if (!request.headers || !request.headers.has('Authorization'))
 		return undefined
 
