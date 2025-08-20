@@ -8,8 +8,6 @@ import {
 	parseJWT,
 } from '@oslojs/jwt'
 
-export const JWT_COOKIE_NAME = 'afta_auth_session' as const
-
 type JSONPrimitive = string | number | boolean | null | undefined
 
 type JSONValue = JSONPrimitive | JSONValue[] | {
@@ -38,6 +36,17 @@ export async function createJwt(payload: JwtData): Promise<string> {
 	const message = createJWTSignatureMessage(headerJSON, payloadJSON) as Uint8Array<ArrayBuffer>
 	const signatureBuffer = await crypto.subtle.sign('HMAC', key, message)
 	return encodeJWT(headerJSON, payloadJSON, new Uint8Array(signatureBuffer))
+}
+
+export function extractJwt(request: Request): string | undefined {
+	if (!request.headers || !request.headers.has('Authorization'))
+		return undefined
+
+	const headerValue = request.headers.get('Authorization')!
+	if (!headerValue.startsWith('Bearer '))
+		return undefined
+
+	return headerValue.split('Bearer ')[1]
 }
 
 export type VerifyJwtReturn = {

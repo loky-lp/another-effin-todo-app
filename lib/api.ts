@@ -1,6 +1,5 @@
 import type { JwtData } from '@/lib/auth'
-import { JWT_COOKIE_NAME, verifyJwt } from '@/lib/auth'
-import { cookies } from 'next/headers'
+import { extractJwt, verifyJwt } from '@/lib/auth'
 import { NextResponse } from 'next/server'
 
 export type VerifyJwtApiResult = {
@@ -13,8 +12,8 @@ export type VerifyJwtApiResult = {
 	return?: never
 }
 
-export async function verifyJwtApi(): Promise<VerifyJwtApiResult> {
-	const jwt = (await cookies()).get(JWT_COOKIE_NAME)?.value
+export async function verifyJwtApi(request: Request): Promise<VerifyJwtApiResult> {
+	const jwt = extractJwt(request)
 	if (!jwt)
 		return { ok: false, return: NextResponse.json(null, { status: 401 }) }
 
