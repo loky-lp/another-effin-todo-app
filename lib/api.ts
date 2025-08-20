@@ -23,3 +23,12 @@ export async function verifyJwtApi(request: Request): Promise<VerifyJwtApiResult
 
 	return { ok: true, data: result.data }
 }
+
+export function json(data: any, init?: ResponseInit | undefined): Response {
+	const isError = (init?.status || 0) >= 400
+
+	return Response.json({
+		result: isError ? null : data,
+		error: isError ? data : null,
+	}, init)
+}
