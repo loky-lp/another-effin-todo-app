@@ -32,7 +32,7 @@ model Task {
   title       String
   description String?
   status      TaskStatus @default(PENDING)
-  createdAt   DateTime
+  createdAt   DateTime   @default(now())
   expiresAt   DateTime?
   priority    Int?
   owner       User       @relation(fields: [ownerId], references: [id])
