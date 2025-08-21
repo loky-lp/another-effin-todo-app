@@ -1,6 +1,6 @@
 'use server'
 
-import { json } from '@/lib/api'
+import { json } from '@/lib/server/api'
 import { createJwt } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { signupFormSchema } from '@/lib/validators/auth'
